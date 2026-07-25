@@ -3,7 +3,7 @@
 import React, { useEffect, useRef, useState, useCallback } from "react";
 import Link from "next/link";
 import gsap from "gsap";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, type Variants, type TargetAndTransition } from "framer-motion";
 
 const Navigation = () => {
   const navRef = useRef<HTMLElement>(null);
@@ -57,7 +57,7 @@ const Navigation = () => {
     { label: "Visit", href: "#visit" },
   ];
 
-  const mobileVariants = {
+  const mobileVariants: Variants = {
     closed: {
       x: "100%",
       transition: { type: "spring", damping: 30, stiffness: 300 },
@@ -68,9 +68,9 @@ const Navigation = () => {
     },
   };
 
-  const linkVariants = {
+  const linkVariants: Variants = {
     closed: { x: 40, opacity: 0 },
-    open: (i: number) => ({
+    open: (i: number): TargetAndTransition => ({
       x: 0,
       opacity: 1,
       transition: { delay: 0.1 + i * 0.08, ease: [0.16, 1, 0.3, 1], duration: 0.6 },
